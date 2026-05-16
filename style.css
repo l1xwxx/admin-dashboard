@@ -1,0 +1,120 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: solid 1px red;
+}
+
+.container {
+  display: grid;
+  grid-template:
+    "sidebar topbar" auto
+    "sidebar page-header" auto
+    "sidebar main" auto / 1fr 4fr;
+}
+
+.nav ul,
+.block ul {
+  list-style-type: none;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background-color: lightgreen;
+}
+
+.sidebar .logo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  font-size: 0.8em;
+}
+
+.sidebar nav ul li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+
+.topbar {
+  grid-area: topbar;
+  display: grid;
+  grid-template-columns: 1fr max-content;
+}
+
+button, input {
+  font-family: inherit;
+  font-size: 100%;
+  appearance: none;
+  display: block;
+  margin: 0;
+  padding: 10px 20px;
+  height: 30px;
+  border-radius: 15px;
+}
+
+.topbar input {
+  width: 100%;
+  background-color: lightblue;
+  align-self: center;
+}
+
+.topbar .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-self: end;
+}
+
+.page-header {
+  grid-area: page-header;
+  display: grid;
+  grid-template-columns: max-content max-content;
+  justify-content: space-between;
+}
+
+.page-header .greeting {
+  display: grid;
+  grid-template-columns: max-content max-content;
+}
+
+.page-header .actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-self: center;
+}
+
+.page-header .actions button {
+  background-color: darkblue;
+  color: white;
+}
+
+main {
+ grid-area: main;
+ display: grid;
+ grid-template:
+   "content pannel" auto / 3fr 1fr;
+}
+
+.content .cards {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.content .card {
+  height: 200px;
+  display: grid;
+}
+
+.card .actions {
+  justify-self: end;
+  align-self: end;
+}
+
+.pannel {
+  grid-area: pannel;
+}
+
+.content {
+  grid-area: content;
+}
