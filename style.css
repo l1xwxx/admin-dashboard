@@ -2,89 +2,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid red;
-}
-
-/* The layout of the page */
-.container {
-  display: grid;
-  grid-template:
-    "sidebar topbar" auto
-    "sidebar page-header" auto
-    "sidebar main" auto / 1fr 4fr;
 }
 
 /* Remove the defaut styling of lists */
 .nav ul,
 .block ul {
   list-style-type: none;
-}
-
-/* Formatting sidebar rows */
-.sidebar,
-.sidebar nav {
-  display: grid;
-  grid-template-rows: min-content min-content;
-  gap: 2rem;
-}
-
-/* Formatting sidebar columns */
-.sidebar .logo,
-.sidebar nav ul li {
-  display: grid;
-  grid-template-columns: min-content min-content;
-}
-
-.sidebar {
-  grid-area: sidebar;
-  background-color: lightblue;
-  padding: 1rem;
-}
-
-.sidebar .logo {
-  gap: 0.5rem;
-  font-size: 0.8em;
-  align-items: center;
-}
-
-.sidebar nav ul {
-  display: grid;
-  gap: 0.5rem;
-}
-
-.sidebar nav ul li {
-  gap: 1rem;
-}
-
-.topbar {
-  grid-area: topbar;
-  display: grid;
-  grid-template-columns: 1fr auto;
-}
-
-.topbar .search_bar {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
-.search_bar input {
-  width: 100%;
-  background-color: lightblue;
-}
-
-.topbar .actions {
-  display: grid;
-  grid-template-columns: auto auto auto;
-}
-
-/* Centering and adding padding + gap to topbar + page header contents*/
-.topbar .search_bar,
-.topbar .actions,
-.page-header .greeting,
-.page-header .actions {
-  align-items: center;
-  padding: 1rem 3.5rem 1rem 1.5rem;
-  gap: 1rem;
 }
 
 /* Styling native UI */
@@ -99,6 +22,102 @@ button, input {
   border-radius: 15px;
 }
 
+/* The layout of the page */
+.container {
+  display: grid;
+  grid-template:
+    "sidebar topbar" auto
+    "sidebar page-header" auto
+    "sidebar main" auto / 1fr 4fr;
+}
+
+.sidebar {
+  grid-area: sidebar;
+}
+
+.topbar {
+  grid-area: topbar;
+}
+
+main {
+  grid-area: main;
+}
+
+/* Formatting the sidebar */
+.sidebar {
+  padding: 1rem;
+}
+
+/* Formatting sidebar rows */
+.sidebar,
+.sidebar nav {
+  display: grid;
+  grid-template-rows: min-content min-content; /* Is it okay to need to use min-content here? Maybe I should've used flexbox instead because it relies on intrinsic sizing to determine the size of content? */
+  gap: 2rem;
+}
+
+.sidebar nav ul {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* Formatting sidebar columns */
+.sidebar .logo,
+.sidebar nav ul li {
+  display: grid;
+  grid-template-columns: min-content min-content; /* Is it okay to need to use min-content here? Maybe I should've used flexbox instead because it relies on intrinsic sizing to determine the size of content? */
+  align-items: center;
+}
+
+.sidebar .logo {
+  gap: 0.5rem;
+}
+
+.sidebar nav ul li {
+  gap: 1rem;
+}
+
+/* Styling the sidebar */
+
+/* Colors */
+.sidebar {
+  background-color: lightblue;
+}
+
+/* Fonts */
+.sidebar .logo {
+  font-size: 0.8em;
+}
+
+/* Formatting topbar columns */
+.topbar {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+.topbar .search_bar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.search_bar input {
+  width: 100%;
+}
+
+.topbar .actions {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+/* Styling the topbar */
+
+/* Colors */
+.search_bar input {
+  background-color: lightgrey;
+}
+
+/* Fonts */
+
 .page-header {
   grid-area: page-header;
   display: grid;
@@ -106,6 +125,7 @@ button, input {
   justify-content: space-between;
 }
 
+/* Formatting page header columns */
 .page-header .greeting {
   display: grid;
   grid-template-columns: auto auto;
@@ -116,34 +136,31 @@ button, input {
   grid-template-columns: auto auto auto;
 }
 
+/* Styling the page header */
+
+/* Colors */
 .page-header .actions button {
   background-color: darkblue;
   color: white;
 }
 
+/* Fonts */
+
+/* Formatting topbar and page header contents*/
+.topbar .search_bar,
+.topbar .actions,
+.page-header .greeting,
+.page-header .actions {
+  align-items: center;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  gap: 1rem;
+}
+
+/* The layout of the main part of the page */
 main {
-  grid-area: main;
   display: grid;
   grid-template:
    "content pannel" auto / 3fr 1fr;
-  padding: 2rem 1.5rem 3rem 0.5rem;
-}
-
-.content .cards {
-  grid-area: content;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(267px, 1fr));
-  gap: 2rem;
-}
-
-.content .cards .card {
-  height: 200px;
-  display: grid;
-}
-
-.card .actions {
-  justify-self: end;
-  align-self: end;
 }
 
 .pannel {
@@ -152,4 +169,84 @@ main {
 
 .content {
   grid-area: content;
+}
+
+/* Formatting the main part of the page */
+main {
+  padding: 2rem 1.8rem 3rem 1.2rem;
+  gap: 1.5rem;
+}
+
+/* Formatting main part of the page rows */
+.content {
+  grid-template-rows: min-content min-content;
+}
+
+/* Formatting main part of the page columns */
+.content .cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(267px, 1fr));
+  gap: 1.6rem;
+}
+
+.content .cards .card {
+  height: 200px;
+  display: grid;
+}
+
+.content .cards .card .text {
+  padding-right: 0.5rem;
+}
+
+.card .actions {
+  justify-self: end;
+  align-self: end;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+}
+
+/* Styling the main part of the page */
+
+/* Colors */
+main {
+  background-color: lightgrey;
+}
+
+/* Fonts */
+
+/* Formatting aside rows */
+.pannel {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  gap: 2rem;
+}
+
+/* Formatting aside columns */
+.trending .block ul li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+/* Formatting main and aside rows */
+.content,
+.pannel .announcements,
+.pannel .trending {
+  display: grid;
+  gap: 0.8rem;
+}
+
+/* Formatting cards and blocks */
+.card,
+.block {
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+/* Styling cards and blocks */
+
+/* Color */
+.card,
+.block {
+  background-color: white;
 }
