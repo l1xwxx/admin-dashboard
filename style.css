@@ -2,9 +2,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: solid 1px red;
+  border: 1px solid red;
 }
 
+/* The layout of the page */
 .container {
   display: grid;
   grid-template:
@@ -13,35 +14,80 @@
     "sidebar main" auto / 1fr 4fr;
 }
 
+/* Remove the defaut styling of lists */
 .nav ul,
 .block ul {
   list-style-type: none;
 }
 
+/* Formatting sidebar rows */
+.sidebar,
+.sidebar nav {
+  display: grid;
+  grid-template-rows: min-content min-content;
+  gap: 2rem;
+}
+
+/* Formatting sidebar columns */
+.sidebar .logo,
+.sidebar nav ul li {
+  display: grid;
+  grid-template-columns: min-content min-content;
+}
+
 .sidebar {
   grid-area: sidebar;
-  background-color: lightgreen;
+  background-color: lightblue;
+  padding: 1rem;
 }
 
 .sidebar .logo {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: center;
+  gap: 0.5rem;
   font-size: 0.8em;
+  align-items: center;
+}
+
+.sidebar nav ul {
+  display: grid;
+  gap: 0.5rem;
 }
 
 .sidebar nav ul li {
-  display: grid;
-  grid-template-columns: auto 1fr;
+  gap: 1rem;
 }
-
 
 .topbar {
   grid-area: topbar;
   display: grid;
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: 1fr auto;
 }
 
+.topbar .search_bar {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.search_bar input {
+  width: 100%;
+  background-color: lightblue;
+}
+
+.topbar .actions {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+/* Centering and adding padding + gap to topbar + page header contents*/
+.topbar .search_bar,
+.topbar .actions,
+.page-header .greeting,
+.page-header .actions {
+  align-items: center;
+  padding: 1rem 3.5rem 1rem 1.5rem;
+  gap: 1rem;
+}
+
+/* Styling native UI */
 button, input {
   font-family: inherit;
   font-size: 100%;
@@ -53,34 +99,21 @@ button, input {
   border-radius: 15px;
 }
 
-.topbar input {
-  width: 100%;
-  background-color: lightblue;
-  align-self: center;
-}
-
-.topbar .actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-self: end;
-}
-
 .page-header {
   grid-area: page-header;
   display: grid;
-  grid-template-columns: max-content max-content;
+  grid-template-columns: auto auto;
   justify-content: space-between;
 }
 
 .page-header .greeting {
   display: grid;
-  grid-template-columns: max-content max-content;
+  grid-template-columns: auto auto;
 }
 
 .page-header .actions {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-self: center;
+  grid-template-columns: auto auto auto;
 }
 
 .page-header .actions button {
@@ -89,19 +122,21 @@ button, input {
 }
 
 main {
- grid-area: main;
- display: grid;
- grid-template:
+  grid-area: main;
+  display: grid;
+  grid-template:
    "content pannel" auto / 3fr 1fr;
+  padding: 2rem 1.5rem 3rem 0.5rem;
 }
 
 .content .cards {
   grid-area: content;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(267px, 1fr));
+  gap: 2rem;
 }
 
-.content .card {
+.content .cards .card {
   height: 200px;
   display: grid;
 }
